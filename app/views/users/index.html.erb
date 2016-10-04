@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+<%= link_to 'New User', new_user_path, id: "add_name_link", remote: true %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2">user option</option></th>
+      <th > phones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr id="edit_user_<%=user.id%>">
+        <td><b><%= user.name %></b>
+        <%= link_to 'add new phone', new_user_phone_path(user.id) %>
+        </td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+        <td>
+          <%user.phones.each do |phone|%>
+              <%= phone.number%>
+              <%= link_to 'edit', edit_phone_path(phone) %>
+              <%= link_to 'delete', phone_path(phone), method: :delete, remote: true %>
+            <br>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div id="added_name">
+
+</div>
+<p>
+<%=button_to "download my phone book", download_path(format: :csv) ,method: :get%><br>
+</p>
+
+
+<%= form_tag upload_path do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "upload phone book" %>
+<% end %>
