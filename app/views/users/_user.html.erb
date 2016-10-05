@@ -6,13 +6,7 @@
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
         <%user.phones.each do |phone|%>
-        <td id="edit_user_Phone_<%=phone.id%>">
-             <p>
-              <%= phone.number%>
-              <%= link_to 'edit', edit_phone_path(phone) %>
-              <%= link_to 'delete', phone_path(phone), method: :delete, remote: true %>
-            </p>
-          <%end%>
-        </td>
+        <%=render partial: "phones/phone", locals: {phone: phone}%>
+        <% end %>
       </tr>
   </tbody>
