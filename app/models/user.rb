@@ -3,20 +3,22 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def self.to_csv
-    attributes = %w{name phones}
+    attributes = %w{name}
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |user|
-        phones = []
-        user.phones.each { |ph| phones << ph.number }
-          byebug
-        csv << [user.attributes.values_at("name")[0],phones]
+        row = []
+        byebug
+        row << user.name
+        user.phones.each { |ph| row << ph.number }
+        csv << row
       end
     end
   end
 
   def self.import(file)
       CSV.foreach(file.path ,headers: true ) do |row|
+          byebug
           User.create!(name: row[0])
       end
 
