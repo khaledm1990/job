@@ -9,7 +9,8 @@ class User < ApplicationRecord
       all.each do |user|
         phones = []
         user.phones.each { |ph| phones << ph.number }
-        csv << [user.attributes.values_at("name"),phones]
+          byebug
+        csv << [user.attributes.values_at("name")[0],phones]
       end
     end
   end
