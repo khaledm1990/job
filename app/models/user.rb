@@ -15,9 +15,8 @@ class User < ApplicationRecord
   end
 
   def self.import(file)
-    byebug
       CSV.foreach(file.path ,headers: true ) do |row|
-          User.create!()
+          User.create!(name: row[0])
       end
 
   end
