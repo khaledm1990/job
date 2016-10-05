@@ -21,6 +21,7 @@ class PhonesController < ApplicationController
 
   # GET /phones/1/edit
   def edit
+    @user = User.find(params[:user_id])
   end
 
   # POST /phones
@@ -33,6 +34,7 @@ class PhonesController < ApplicationController
       if @phone.save
         format.html { redirect_to root_path, notice: 'Phone was successfully created.' }
         format.json { render :show, status: :created, location: @phone }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @phone.errors, status: :unprocessable_entity }

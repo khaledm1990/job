@@ -1,16 +1,17 @@
   <tbody>
       <tr id="edit_user_<%=user.id%>">
         <td><b><%= user.name %></b>
-        <%= link_to 'add new phone', new_user_phone_path(user.id) %>
+        <%= link_to 'add new phone', new_user_phone_path(user.id),id: "add_new_phone_link_#{user.id}", remote: true %>
         </td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
-        <td>
-          <%user.phones.each do |phone|%>
+        <%user.phones.each do |phone|%>
+        <td id="edit_user_Phone_<%=phone.id%>">
+             <p>
               <%= phone.number%>
               <%= link_to 'edit', edit_phone_path(phone) %>
               <%= link_to 'delete', phone_path(phone), method: :delete, remote: true %>
-            <br>
+            </p>
           <%end%>
         </td>
       </tr>
