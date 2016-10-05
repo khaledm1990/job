@@ -21,7 +21,10 @@ class User < ApplicationRecord
           if @user
               row.delete("name")
               row.each do |key ,value|
-                @user.phones.create(number: value)
+                @phone = Phone.find_by(number: value)
+                unless @phones.present?
+                  @user.phones.create(number: value)
+                end
               end
           else
             @user = User.create(name: row[0])
