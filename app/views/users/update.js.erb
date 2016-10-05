@@ -1,0 +1,4 @@
+
+$('#edit_user_<%=@user.id%>').remove();
+$('#edit_user_link_<%=@user.id%>').show();
+$('#added_name').append('<%= j render(@user) %>');

@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   def upload
     User.import(params[:file])
     redirect_to root_path, notice: " new phone book hase been uploaded"
-
   end
 
 
@@ -36,6 +35,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    respond_to do |format|
+      format.js {}
+      format.html
+    end
   end
 
   # POST /users
@@ -59,8 +62,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
+        # format.html { redirect_to root_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }

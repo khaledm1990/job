@@ -1,9 +1,9 @@
   <tbody>
       <tr id="edit_user_<%=user.id%>">
-        <td><b><%= user.name %></b>
+        <td><b><span id="user_name_<%=user.id%>"><%= user.name %></span></b>
         <%= link_to 'add new phone', new_user_phone_path(user.id),id: "add_new_phone_link_#{user.id}", remote: true %>
         </td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), remote: true, id: "edit_user_link_#{user.id}" %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
         <%user.phones.each do |phone|%>
         <%=render partial: "phones/phone", locals: {user: user, phone: phone}%>
