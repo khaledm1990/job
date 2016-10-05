@@ -8,7 +8,6 @@ class User < ApplicationRecord
       csv << attributes
       all.each do |user|
         row = []
-        byebug
         row << user.name
         user.phones.each { |ph| row << ph.number }
         csv << row
@@ -18,8 +17,23 @@ class User < ApplicationRecord
 
   def self.import(file)
       CSV.foreach(file.path ,headers: true ) do |row|
-          byebug
-          User.create!(name: row[0])
+          @user = User.find_by(name: row[0])
+          if @user
+              row.delete("name")
+              row.each do |key ,value|
+                @user.phones.create(number: value)
+              end
+          else
+            @user = User.create(name: row[0])
+            row.delete("name")
+            if row.length > 1
+              row.each do |key ,value|
+                byebug
+                @user.phones.create(number: value)
+              end
+            end
+          end
+
       end
 
   end
