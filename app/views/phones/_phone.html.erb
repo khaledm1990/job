@@ -1,7 +1,7 @@
   <td id="edit_user_Phone_<%=phone.id%>">
        <p>
-        <%= phone.number%>
-        <%= link_to 'edit', edit_phone_path(id: phone.id, user_id: phone.user_id) %>
+         <span id="phne_number_<%=phone.id%>"><%= phone.number%></span>
+        <%= link_to 'edit', edit_phone_path(id: phone.id, user_id: phone.user_id), remote: true, id: "edit_user_Phone_link_#{phone.user.id}" %>
         <%= link_to 'delete', phone_path(phone), method: :delete, remote: true %>
       </p>
   </td>

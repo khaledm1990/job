@@ -1,5 +1,5 @@
   <tbody>
-      <tr id="edit_user_<%=user.id%>">
+      <tr id="row_user_<%=user.id%>">
         <td><b><span id="user_name_<%=user.id%>"><%= user.name %></span></b>
         <%= link_to 'add new phone', new_user_phone_path(user.id),id: "add_new_phone_link_#{user.id}", remote: true %>
         </td>

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root "users#index"
   resources :users do
-    resources :phones, only: [:new, :create, :show]
+    resources :phones, only: [:new, :create, :show, :update]
   end
-  resources :phones, only: [:destroy,:edit, :update]
+  resources :phones, only: [:destroy,:edit]
 
   get "/download", to: "users#download", as: "download"
   post "/upload", to: "users#upload", as: "upload"
