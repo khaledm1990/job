@@ -61,6 +61,7 @@ class PhonesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Phone was successfully destroyed.' }
       format.json { head :no_content }
+      format.js {}
     end
   end
 
