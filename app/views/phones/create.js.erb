@@ -1,0 +1,3 @@
+$('#new_phone').remove();
+$('#add_new_phone_link_<%=@user.id%>').show();
+$('#edit_user_<%=@user.id%>').append('<%= j render(@phone) %>');

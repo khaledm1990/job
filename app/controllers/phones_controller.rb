@@ -21,7 +21,6 @@ class PhonesController < ApplicationController
 
   # GET /phones/1/edit
   def edit
-    byebug
     @user = User.find(params[:user_id])
   end
 
